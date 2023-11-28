@@ -9,10 +9,10 @@ const Layout = () => {
         <nav>
           <MenuList>
             <li>
-              <NavLink to="/">Home</NavLink>{' '}
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/movies">Movies</NavLink>{' '}
+              <NavLink to="/movies">Movies</NavLink>
             </li>
           </MenuList>
         </nav>
