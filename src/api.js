@@ -7,26 +7,36 @@ const options = new URLSearchParams({
 });
 
 export const fetchTrendMovies = async () => {
-  const res = await axios(`trending/all/day?${options}`);
+  const res = await axios('trending/all/day', {
+    params: options,
+  });
   return await res.data;
 };
 
 export const fetchMovieByName = async name => {
-  const res = await axios(`search/movie?${options}&query=${name}`);
+  const res = await axios(`search/movie?query=${name}`, {
+    params: options,
+  });
   return await res.data;
 };
 
 export const fetchMovieById = async id => {
-  const res = await axios(`movie/${id}?${options}`);
+  const res = await axios(`movie/${id}`, {
+    params: options,
+  });
   return await res.data;
 };
 
 export const fetchMovieCredits = async id => {
-  const res = await axios(`movie/${id}/credits?${options}`);
+  const res = await axios(`movie/${id}/credits`, {
+    params: options,
+  });
   return res.data;
 };
 
 export const fetchMovieReviews = async id => {
-  const res = await axios(`movie/${id}/reviews?${options}`);
+  const res = await axios(`movie/${id}/reviews`, {
+    params: options,
+  });
   return res.data;
 };
