@@ -4,6 +4,7 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 const options = new URLSearchParams({
   api_key: '9cc860df4c5a2dfba823744e561a2dde',
+  language: 'en-US',
 });
 
 export const fetchTrendMovies = async () => {

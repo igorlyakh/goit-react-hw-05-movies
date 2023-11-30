@@ -7,11 +7,13 @@ const MovieList = () => {
 
   useEffect(() => {
     const getFilms = async () => {
-      const res = await fetchTrendMovies();
-
-      const { results } = res;
-
-      setFilms(results);
+      try {
+        const res = await fetchTrendMovies();
+        const { results } = res;
+        setFilms(results);
+      } catch {
+        console.error('ERROR!');
+      }
     };
 
     getFilms();
