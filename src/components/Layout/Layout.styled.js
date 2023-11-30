@@ -6,7 +6,7 @@ export const Header = styled.header`
 `;
 
 export const MenuList = styled.ul`
-  padding: 0 0 0 20px;
+  padding: 0;
   margin: 0;
   display: flex;
   list-style: none;
@@ -22,4 +22,10 @@ export const NavLink = styled(RouterLink)`
     color: orange;
     text-decoration: underline;
   }
+`;
+
+export const Container = styled.div`
+  width: 1380px;
+  padding: 0 10px;
+  margin: 0 auto;
 `;
