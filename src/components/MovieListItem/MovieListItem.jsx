@@ -5,7 +5,10 @@ const MovieListItem = ({ title, id }) => {
   const location = useLocation();
   return (
     <li>
-      <Link to={`${id}`} state={{ from: location }}>
+      <Link
+        to={location.pathname === '/' ? `/movies/${id}` : `${id}`}
+        state={{ from: location }}
+      >
         {title}
       </Link>
     </li>
