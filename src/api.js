@@ -8,7 +8,7 @@ const options = new URLSearchParams({
 });
 
 export const fetchTrendMovies = async () => {
-  const res = await axios('trending/all/day', {
+  const res = await axios('trending/movie/day', {
     params: options,
   });
   return await res.data;
