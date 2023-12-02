@@ -22,7 +22,7 @@ const DetailInfo = () => {
     getFilmsData();
   }, [movieId]);
 
-  const placeholder = 'https://placehold.co/400x600?text=Not+Found';
+  const PLACEHOLDER = 'https://placehold.co/400x600?text=Not+Found';
 
   const { original_title, vote_average, overview, genres, poster_path } = movie;
 
@@ -36,7 +36,7 @@ const DetailInfo = () => {
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500${poster_path}`
-            : placeholder
+            : PLACEHOLDER
         }
         alt={original_title}
       />

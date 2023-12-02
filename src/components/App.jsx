@@ -8,6 +8,7 @@ const HomePage = lazy(() => import('pages/HomePage'));
 const MoviesPage = lazy(() => import('pages/MoviesPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 const ReviewsList = lazy(() => import('components/ReviewList'));
+const CastList = lazy(() => import('components/CastList'));
 
 export const App = () => {
   return (
@@ -17,7 +18,7 @@ export const App = () => {
           <Route index element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />} />
           <Route path="movies/:movieId" element={<DetailMovie />}>
-            <Route path="cast" element={<div>Cast</div>} />
+            <Route path="cast" element={<CastList />} />
             <Route path="reviews" element={<ReviewsList />} />
           </Route>
         </Route>
