@@ -2,10 +2,13 @@ import { fetchMovieByName } from 'api';
 import MovieList from 'components/MovieList';
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { RotatingLines } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [films, setFilms] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [params, setParams] = useSearchParams();
   const title = params.get('title') ?? '';
 
@@ -21,8 +24,15 @@ const MoviesPage = () => {
 
   useEffect(() => {
     const searchFilms = async title => {
-      const res = await fetchMovieByName(title);
-      setFilms(res);
+      try {
+        setIsLoading(true);
+        const res = await fetchMovieByName(title);
+        setFilms(res);
+      } catch {
+        toast.error('Something went wrong! Reload page and try again!');
+      } finally {
+        setIsLoading(false);
+      }
     };
     searchFilms(title);
   }, [title]);
@@ -40,7 +50,15 @@ const MoviesPage = () => {
         />
         <button type="submit">Search</button>
       </form>
-
+      {isLoading && (
+        <RotatingLines
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="96"
+          visible={true}
+        />
+      )}
       {results?.length > 0 && <MovieList films={results} />}
     </>
   );

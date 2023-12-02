@@ -1,9 +1,12 @@
 import { fetchMovieById } from 'api';
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
+import { RotatingLines } from 'react-loader-spinner';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 const DetailInfo = () => {
   const [movie, setMovie] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
   const { movieId } = useParams();
@@ -13,10 +16,13 @@ const DetailInfo = () => {
   useEffect(() => {
     const getFilmsData = async () => {
       try {
+        setIsLoading(true);
         const res = await fetchMovieById(movieId);
         setMovie(res);
       } catch {
-        console.error('ERROR!');
+        toast.error('Something went wrong! Reload page and try again!');
+      } finally {
+        setIsLoading(false);
       }
     };
     getFilmsData();
@@ -28,6 +34,15 @@ const DetailInfo = () => {
 
   return (
     <>
+      {isLoading && (
+        <RotatingLines
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="96"
+          visible={true}
+        />
+      )}
       <p>
         <Link to={backLink.current}>Back</Link>
       </p>
