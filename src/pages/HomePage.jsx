@@ -1,9 +1,8 @@
-import { lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchTrendMovies } from 'api';
 import { RotatingLines } from 'react-loader-spinner';
 import toast from 'react-hot-toast';
-
-const MovieList = lazy(() => import('components/MovieList'));
+import MovieList from 'components/MovieList';
 
 const HomePage = () => {
   const [films, setFilms] = useState([]);

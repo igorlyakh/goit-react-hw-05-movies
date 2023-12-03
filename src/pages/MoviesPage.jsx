@@ -1,6 +1,6 @@
 import { fetchMovieByName } from 'api';
 import MovieList from 'components/MovieList';
-import { useFormik } from 'formik';
+import SearchForm from 'components/SearchForm';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { RotatingLines } from 'react-loader-spinner';
@@ -12,15 +12,9 @@ const MoviesPage = () => {
   const [params, setParams] = useSearchParams();
   const title = params.get('title') ?? '';
 
-  const formik = useFormik({
-    initialValues: {
-      title: title,
-    },
-    onSubmit: (values, { resetForm }) => {
-      setParams({ title: values.title });
-      resetForm();
-    },
-  });
+  const submitForm = value => {
+    setParams({ title: value });
+  };
 
   useEffect(() => {
     const searchFilms = async title => {
@@ -41,15 +35,7 @@ const MoviesPage = () => {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
-        <input
-          name="title"
-          type="text"
-          value={formik.values.title}
-          onChange={formik.handleChange}
-        />
-        <button type="submit">Search</button>
-      </form>
+      <SearchForm title={title} submitForm={submitForm} />
       {isLoading && (
         <RotatingLines
           strokeColor="grey"

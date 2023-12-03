@@ -5,7 +5,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 const DetailInfo = () => {
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
@@ -29,7 +29,7 @@ const DetailInfo = () => {
   }, [movieId]);
 
   const PLACEHOLDER = 'https://placehold.co/400x600?text=Not+Found';
-
+  if (!movie) return;
   const { original_title, vote_average, overview, genres, poster_path } = movie;
 
   return (
